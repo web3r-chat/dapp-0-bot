@@ -1,0 +1,82 @@
+version: "3.1"
+
+intents:
+  - connect
+  - goodbye
+  - affirm
+  - deny
+  - bot_version
+
+entities:
+  - jwt
+  - principal
+
+slots:
+  jwt:
+    type: any
+    initial_value: null
+    mappings:
+    - type: from_entity
+      entity: jwt
+      intent: connect
+
+  principal:
+    type: text
+    initial_value: null
+    mappings:
+    - type: custom
+      action: action_connect
+      intent: connect
+      
+  canister_motoko_id:
+    type: any
+    initial_value: null
+    mappings:
+    - type: custom
+      action: action_connect
+      intent: connect
+      
+  canister_motoko_candid_ui:
+    type: any
+    initial_value: null
+    mappings:
+    - type: custom
+      action: action_connect
+      intent: connect
+    
+      
+responses:
+  # Fallback 1: NLU - low confidence intent prediction by NLU
+  # The response when nlu_fallback is triggered due to low confidence intent prediction
+  utter_nlu_fallback:
+    - text: "Sorry, I don't understand that."
+
+  # Fallback 2: NLU - out_of_scope intent is predicted by NLU
+  utter_out_of_scope:
+    - text: "Sorry, I don't know what you mean."
+
+  # Fallback 3: CORE - low confidence action prediction by CORE
+  # The response uttered by action_default_fallback,
+  # triggered by the core RulePolicy when no policy predicts next action with high enough confidence.
+  utter_default:
+    - text: "Sorry, I don’t know what to do next."
+
+  utter_goodbye:
+    - text: "Bye"
+
+  utter_welcome:
+    - text: "You're now chatting with bot-0."
+  
+  utter_invalid_jwt:
+    - text: "Internal server error (jwt)."
+    
+  utter_do_you_like_to_build_an_IC_chatbot_or_do_you_have_other_questions:
+    - text: "What kind of IC chatbot do you like to build, or do you have any other questions?"
+  
+actions:
+  - action_connect
+  - action_bot_version
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

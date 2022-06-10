@@ -1,0 +1,52 @@
+version: "3.1"
+
+rules:
+  ################################################
+  # Fallback logic
+  - rule: nlu_fallback
+    steps:
+      - intent: nlu_fallback
+      - action: utter_nlu_fallback
+
+  - rule: out_of_scope
+    steps:
+      - intent: out_of_scope
+      - action: utter_out_of_scope
+
+  - rule: goodbye
+    steps:
+      - intent: goodbye
+      - action: utter_goodbye
+
+  ##################################################################
+  # Intial connection logic, requiring a valid jwt, to set principal
+  - rule: Initial connect message, to be send with a jwt
+    steps:
+      - intent: connect
+      - action: action_connect
+    wait_for_user_input: false
+      
+  - rule: Start conversation, if principal could be set from connect message 
+    steps:
+      - action: action_connect
+      - slot_was_set:
+        - principal: "xxxx-xxxx-...."
+      - action: utter_welcome
+      - action: smartcontract_demo_form
+      - active_loop: smartcontract_demo_form
+      
+  - rule: Error response, if principal could NOT be set from connect message 
+    steps:
+      - action: action_connect
+      - slot_was_set:
+        - principal: null
+      - action: utter_invalid_jwt
+  
+  ##################################################################
+  # Actual skills
+  - rule: bot_version
+    steps:
+      - intent: bot_version
+      - action: action_bot_version
+
+  

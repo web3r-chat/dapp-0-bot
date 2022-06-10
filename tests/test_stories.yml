@@ -1,0 +1,68 @@
+#### This file contains tests to evaluate that your bot behaves as expected.
+#### If you want to learn more, please see the docs: https://rasa.com/docs/rasa/testing-your-assistant
+
+stories:
+  - story: Test out of scope for garbage
+    steps:
+      - user: |
+          wheao48ie5rkjnlkih4tadf
+        intent: out_of_scope
+      - action: utter_out_of_scope
+
+  - story: Test out of scope
+    steps:
+      - user: |
+          I want pizza
+        intent: out_of_scope
+      - action: utter_out_of_scope
+
+  - story: say goodbye
+    steps:
+      - user: |
+          bye-bye!
+        intent: goodbye
+      - action: utter_goodbye
+
+  - story: bot version
+    steps:
+      - user: |
+          /bot_version
+        intent: bot_version
+      - action: action_bot_version
+
+#  - story: faq_about/web3r_chat_and_bot_0
+#    steps:
+#      - user: |
+#          what is web3r.chat?
+#        intent: faq_about/web3r_chat_and_bot_0
+#      - action: utter_faq_about/web3r_chat_and_bot_0
+#      
+#  - story: faq_sales/build_a_bot
+#    steps:
+#      - user: |
+#          a helpdesk bot?
+#        intent: faq_sales/build_a_bot
+#      - action: utter_faq_sales/build_a_bot
+
+  - story: connection is successfull
+    steps:
+      - user: |
+          /connect
+        intent: connect
+      - action: action_connect
+      - slot_was_set:
+        - principal: "xxxx-xxxx-...."
+      - action: utter_welcome
+      - action: smartcontract_demo_form
+      - action: action_submit_smartcontract_demo_form
+      - action: utter_do_you_like_to_build_an_IC_chatbot_or_do_you_have_other_questions
+      
+  - story: connection fails on jwt
+    steps:
+      - user: |
+          /connect
+        intent: connect
+      - action: action_connect
+      - slot_was_set:
+        - principal: null
+      - action: utter_invalid_jwt

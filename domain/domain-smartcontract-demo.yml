@@ -1,0 +1,145 @@
+version: "3.1"
+  
+  
+slots:
+  smartcontract_demo_1_start:
+    type: any
+    influence_conversation: false
+    initial_value: null
+    mappings:
+    - type: from_intent
+      intent: affirm
+      value: yes
+      conditions:
+      - active_loop: smartcontract_demo_form
+        requested_slot: smartcontract_demo_1_start
+    - type: from_intent
+      intent: deny
+      value: no
+      conditions:
+      - active_loop: smartcontract_demo_form
+        requested_slot: smartcontract_demo_1_start
+    
+  smartcontract_demo_2_intro:
+    type: any
+    influence_conversation: false
+    initial_value: null
+    mappings:
+    - type: from_intent
+      intent: affirm
+      value: yes
+      conditions:
+      - active_loop: smartcontract_demo_form
+        requested_slot: smartcontract_demo_2_intro
+    - type: from_intent
+      intent: deny
+      value: no
+      conditions:
+      - active_loop: smartcontract_demo_form
+        requested_slot: smartcontract_demo_2_intro
+  
+  smartcontract_demo_3_ask_secret_message:
+    type: any
+    influence_conversation: false
+    initial_value: null
+    mappings:
+    - type: from_text
+      conditions:
+      - active_loop: smartcontract_demo_form
+        requested_slot: smartcontract_demo_3_ask_secret_message
+        
+  repeated_validation_failures:
+    type: any
+    influence_conversation: false
+    initial_value: null
+    mappings:
+    - type: custom
+
+  AA_CONTINUE_FORM:
+    type: any
+    influence_conversation: false
+    initial_value: yes
+    mappings:
+    - type: from_intent
+      intent: affirm
+      value: yes
+      conditions:
+      - active_loop: smartcontract_demo_form
+        requested_slot: AA_CONTINUE_FORM
+    - type: from_intent
+      intent: deny
+      value: no
+      conditions:
+      - active_loop: smartcontract_demo_form
+        requested_slot: AA_CONTINUE_FORM
+
+  zz_confirm_form:
+    type: any
+    influence_conversation: false
+    initial_value: null
+    mappings:
+    - type: from_intent
+      intent: affirm
+      value: yes
+      conditions:
+      - active_loop: smartcontract_demo_form
+        requested_slot: zz_confirm_form
+    - type: from_intent
+      intent: deny
+      value: no
+      conditions:
+      - active_loop: smartcontract_demo_form
+        requested_slot: zz_confirm_form
+
+responses:
+  utter_ask_smartcontract_demo_form_smartcontract_demo_1_start:
+  - text: "
+      Would you like to see an IC Smart Contract demo?"
+  
+  utter_ask_smartcontract_demo_form_smartcontract_demo_2_intro:
+  - text: "
+      First of all, the chatbot already knows your principal ID:\n\n 
+      {principal} \n\n
+      This principal ID was securely transferred via [this IC smart contract]({canister_motoko_candid_ui}).\n\n
+      Try it out, you will find most APIs are protected!\n\n
+      Continue?"
+      
+  utter_ask_smartcontract_demo_form_smartcontract_demo_3_ask_secret_message:
+  - text: "
+      Please type a secret message.\n\n
+      The bot will store it in the Smart Contract on the IC."
+        
+  utter_ask_smartcontract_demo_form_AA_CONTINUE_FORM:
+  - buttons:
+    - payload: /affirm
+      title: Yes
+    - payload: /deny
+      title: No
+    text: Do you want to continue?
+    
+  utter_ask_smartcontract_demo_form_zz_confirm_form:
+  - buttons:
+    - payload: /affirm
+      title: Yes
+    - payload: /deny
+      title: No
+    text: "
+      Ok! your secret message was stored.\n\n 
+      Please verify it by calling the **get_message** API in [the IC smart contract]({canister_motoko_candid_ui}).\n\n
+      Enter your principal ID *(see above)* as the argument\n\n
+      Did it work?"
+    
+forms:
+  smartcontract_demo_form:
+    ignored_intents: []
+    required_slots:
+    - AA_CONTINUE_FORM
+    - smartcontract_demo_1_start
+    - smartcontract_demo_2_intro
+    - smartcontract_demo_3_ask_secret_message
+    - zz_confirm_form
+
+actions:
+  - validate_smartcontract_demo_form
+  - action_submit_smartcontract_demo_form
+  

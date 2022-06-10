@@ -1,0 +1,31 @@
+<!-- Run `$ make connect` and update `data-initial-payload` & data-token -->
+<!-- Then, open this file in your browser to test the bot from rasa-chat-widget -->
+
+
+<!-- https://chat-widget-docs.rasa.com/?path=/docs/rasa-chat-widget--widget -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="index.css" />
+  </head>
+  <body style="background-color: hsl(230, 15%, 15%)">
+    <div
+      id="rasa-chat-widget"
+      data-websocket-url="http://localhost:5005/"
+      data-avatar-url="https://docs.google.com/drawings/d/e/2PACX-1vT-tOoa5MOwggr4dw-aARw0h1WUKbDd4yrFj51EY-iwwGpN-gg94P1UCGn5IFIrzV67bD9K_zILvEpQ/pub?w=360&amp;h=360"
+      data-avatar-background="hsl(230, 15%, 30%)"
+      data-default-open="false"
+      data-font=""
+      data-height="560"
+      data-width="375"
+      data-primary="hsl(250, 100%, 75%)"
+      data-primary-highlight="hsl(250, 100%, 75%)"
+      data-initial-payload='/connect{"jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ3ZWIzci5jaGF0IiwiZXhwIjoxNjUyODQ5OTcyLjQxNTUyODUsInN1YiI6InJrNmV1LTJxeHh4LXFienE2LWlxZ2piLW14aHJqLXdvZG1qLXU1aG40LW9qaHR5LW5zZWR2LWlscWxvLXNhZSJ9.CFq4mjc5Hw_DZl5s5HQd9pgD8ygn5FcfVfgRBlPrSqk"}'
+      data-token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ3ZWIzci5jaGF0IiwiZXhwIjoxNjUyODQ5OTcyLjQxNTUyODUsInN1YiI6InJrNmV1LTJxeHh4LXFienE2LWlxZ2piLW14aHJqLXdvZG1qLXU1aG40LW9qaHR5LW5zZWR2LWlscWxvLXNhZSJ9.CFq4mjc5Hw_DZl5s5HQd9pgD8ygn5FcfVfgRBlPrSqk"
+    ></div>
+    <script
+      src="https://unpkg.com/@rasahq/rasa-chat"
+      type="application/javascript"
+    ></script>
+  </body>
+</html>

@@ -1,0 +1,21 @@
+version: "3.1"
+
+intents:
+  - faq_about
+  
+responses:
+
+  utter_faq_about/web3r_chat_and_bot_0:
+    - text: "
+        The web3r.chat project and the demonstartion bots 
+        are created & owned by [Arjaan Buijk](https://www.linkedin.com/in/arjaanbuijk/).\n\n
+        The initial architecture and the foundational bot-0 dApp, the one you're chatting 
+        with, were developed as part of a DFINITY Foundation grant, in early 2022."
+    
+  utter_faq_about/smartcontract:
+    - text: "
+        Motoko is the native Internet Computer language for writing Smart Contracts. 
+        It compiles to WebAssembly, and the compiler automatically generates Candid APIs 
+        and bindings for Javascript, for easy integration in the dApp's frontend.\n\n
+        The Smart Contracts can be written in any language that compiles to WebAssembly,
+        like Rust & C"

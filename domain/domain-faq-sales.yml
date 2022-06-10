@@ -1,0 +1,23 @@
+version: "3.1"
+
+intents:
+  - faq_sales
+
+entities:
+  - bot_type
+  
+slots:
+  bot_type:
+    type: text
+    initial_value: null
+    mappings:
+    - type: from_entity
+      entity: bot_type
+      
+responses:
+  utter_faq_sales/build_a_bot:
+    - text: "
+        We can help you build a {bot_type} chatbot for the IC.\n\n
+        If you like to discuss it more, please fill out this [form](https://docs.google.com/forms/d/e/1FAIpQLSeFjvt37wCxm5se1f_f3Cd1U-N47cSZ_dhh_UsUmiDW8no_cg/viewform?vc=0&c=0&w=1&flr=0)"
+
+

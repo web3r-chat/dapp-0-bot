@@ -1,0 +1,26 @@
+version: "3.1"
+
+nlu:
+  - intent: 'faq_about/web3r_chat_and_bot_0'
+    examples: |
+      - what is web3r.chat?
+      - what is web3r
+      - what can I do with web3r.chat
+      - is web3r.chat a chatbot?
+      - can you explain web3r.chat
+      - who owns this
+      - who created bot-0
+      - who made you?
+      - what is web3r.chat
+      - who made this bot?
+      - is web3r.chat a company?
+      - what company owns web3r chat
+  
+  - intent: 'faq_about/smartcontract'
+    examples: |
+      - what is motoko?
+      - what is a smart contract
+      - what language is the smartcontract written in
+      - is the smartcontract in Motoko?
+      - Are you using Rust?
+      - do you use motoko or rust?

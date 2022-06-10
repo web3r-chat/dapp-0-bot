@@ -1,0 +1,5 @@
+python-dotenv
+pyjwt
+pydantic
+ruamel.yaml
+ic-py

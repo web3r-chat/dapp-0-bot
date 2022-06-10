@@ -1,0 +1,13 @@
+version: "3.1"
+
+nlu:
+  - intent: 'faq_sales/build_a_bot'
+    examples: |
+      - a [helpdesk](bot_type) bot
+      - a [sales](bot_type) bot
+      - a [icp trading](bot_type) bot
+      - a [trading](bot_type) bot
+      - a [nft](bot_type) bot
+      - I want to develop a [betting](bot_type) bot
+      - can I build a [defi](bot_type) chatbot?
+      - I am interested in creating an [NFT](bot_type) chatbot

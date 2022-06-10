@@ -1,0 +1,13 @@
+version: "3.1"
+
+rules:
+  - rule: Submit smartcontract_demo_form
+    condition:
+    - active_loop: smartcontract_demo_form
+    steps:
+    - action: smartcontract_demo_form
+    - active_loop: null
+    - slot_was_set:
+      - requested_slot: null
+    - action: action_submit_smartcontract_demo_form
+    - action: utter_do_you_like_to_build_an_IC_chatbot_or_do_you_have_other_questions

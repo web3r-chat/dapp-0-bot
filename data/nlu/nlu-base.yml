@@ -1,0 +1,43 @@
+version: "3.1"
+
+nlu:
+  # Important: Source the out_of_scope intent from real conversations!
+  - intent: out_of_scope
+    examples: |
+      - I want to order pizza
+      - What is 2 + 2?
+      - Who's the US President?
+      - opihewrp9843;kjadf
+      - DKHERIOUNDFoiu43huinfd
+      
+  - intent: goodbye
+    examples: |
+      - cu
+      - good by
+      - cee you later
+      - good night
+      - bye
+      - goodbye
+      - have a nice day
+      - see you around
+      - bye bye
+      - see you later
+  
+  - intent: affirm
+    examples: |
+      - yes
+      - y
+      - indeed
+      - of course
+      - that sounds good
+      - correct
+  
+  - intent: deny
+    examples: |
+      - no
+      - n
+      - never
+      - I don't think so
+      - don't like that
+      - no way
+      - not really

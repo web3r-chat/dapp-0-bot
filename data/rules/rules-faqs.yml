@@ -1,0 +1,12 @@
+version: "3.1"
+
+rules:
+  - rule: faq_about
+    steps:
+      - intent: faq_about
+      - action: utter_faq_about
+      
+  - rule: faq_sales
+    steps:
+      - intent: faq_sales
+      - action: utter_faq_sales
