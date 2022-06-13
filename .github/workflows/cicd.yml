@@ -1,0 +1,77 @@
+name: cicd
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "*.yml"
+      - "data/**"
+      - "actions/**"
+      - "tests/**"
+      - "*.html"
+      - "Makefile"
+      - "Dockerfile"
+      - "requirements*.txt"
+      - ".github/trigger.txt"
+      - ".github/workflows/cicd.yml"
+
+env:
+  PYTHON_VERSION: 3.8
+
+jobs:
+  all:
+    name: all
+    runs-on: ubuntu-latest
+    steps:
+      # https://github.com/marketplace/actions/setup-miniconda
+      - uses: conda-incubator/setup-miniconda@v2
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: install
+        shell: bash -l {0} # activates the default conda environment ('test')
+        run: |
+          make install-python-dev
+          make install-jp
+
+      - name: Install doctl
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+
+      - name: doctl-registry-login
+        shell: bash -l {0}
+        env:
+          DIGITALOCEAN_ACCESS_TOKEN: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+        run: |
+          make doctl-registry-login
+
+      - name: versions
+        shell: bash -l {0}
+        run: |
+          echo "pip version     : $(pip --version)"
+          echo "python version  : $(python --version)"
+          echo "Ensure conda works properly"
+          conda info
+          which pip
+          which python
+
+      - name: all-test
+        shell: bash -l {0}
+        run: |
+          make all-test
+
+      - name: action-server-build
+        shell: bash -l {0}
+        if: github.ref == 'refs/heads/main'
+        run: |
+          make action-server-build
+
+      - name: action-server-push
+        shell: bash -l {0}
+        if: github.ref == 'refs/heads/main'
+        run: |
+          make action-server-push
