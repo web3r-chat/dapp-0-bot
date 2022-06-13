@@ -15,7 +15,7 @@ from .custom_forms import CustomFormValidationAction
 
 from .canister_motoko import (
     canister_motoko,
-    canister_motoko_health,
+    # canister_motoko_health,
     is_response_variant_ok,
 )
 
