@@ -89,7 +89,6 @@ JWT_METHOD="HS256"
 
 #
 # Action server connection to local services
-SECRET_JWT_KEY="..."
 IC_NETWORK_URL="http://localhost:8000"
 CANISTER_MOTOKO_ID="..."
 CANISTER_MOTOKO_CANDID_UI="http://localhost:8000?canisterId=...&id=..."
